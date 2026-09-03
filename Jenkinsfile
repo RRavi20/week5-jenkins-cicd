@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     stages {
-
         stage('Checkout') {
             steps {
                 echo 'Checking out source code from GitHub'
@@ -21,6 +20,15 @@ pipeline {
                 echo 'Running tests'
                 sh 'chmod +x test.sh'
                 sh './test.sh'
+            }
+        }
+
+        stage('Validation') {
+            steps {
+                echo 'Validating project files'
+                sh 'test -f app.txt'
+                sh 'test -f test.sh'
+                echo 'Validation passed: required files exist.'
             }
         }
     }
