@@ -1,4 +1,19 @@
 node {
+    stage('Checkout') {
+        echo 'Checking out source code from GitHub'
+    }
+
+    stage('Build') {
+        echo 'Building the application'
+        sh 'cat app.txt'
+    }
+
+    stage('Test') {
+        echo 'Running tests'
+        sh 'chmod +x test.sh'
+        sh './test.sh'
+    }
+}node {
 
     stage('Checkout') {
         echo 'Checking out source code from GitHub'
